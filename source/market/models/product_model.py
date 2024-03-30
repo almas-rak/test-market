@@ -1,6 +1,8 @@
 import os
 
+from django.utils import timezone
 from django.db import models
+from django.core.validators import MinValueValidator
 
 from market.models import CategoryModel
 
@@ -45,7 +47,8 @@ class ProductModel(models.Model):
         blank=False
     )
 
-    product_price = models.PositiveIntegerField(
+    product_price = models.FloatField(
+        validators=[MinValueValidator(0)],
         verbose_name="Цена",
         null=False,
         blank=False
@@ -91,3 +94,8 @@ class ProductModel(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+    
+    def delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save(update_fields=['is_deleted', 'deleted_at'])
