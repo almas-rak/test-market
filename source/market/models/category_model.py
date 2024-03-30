@@ -8,3 +8,11 @@ class CategoryModel(models.Model):
         null=False,
         blank=False
     )
+
+    def __str__(self):
+        return f"{self.category_name}"
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        

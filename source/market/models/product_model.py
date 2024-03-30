@@ -9,7 +9,7 @@ from market.models import CategoryModel
 
 def directory_path(instance, filename):
     product_name = instance.product_name.lower()
-    return os.path.join(f'media/product_images', f'{product_name}_image_{filename}')
+    return os.path.join(f'product_images', f'{product_name}_image_{filename}')
 
 
 class ProductModel(models.Model):
@@ -70,6 +70,7 @@ class ProductModel(models.Model):
     )
     deleted_at = models.DateTimeField(
         verbose_name='Дата и время удаления',
+        blank=True,
         null=True,
         default=None
     )

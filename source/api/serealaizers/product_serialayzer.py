@@ -1,11 +1,13 @@
 from rest_framework import serializers
 
-from source.market.models.product_model import ProductModel
+from market.models.product_model import ProductModel
+from api.serealaizers.category_seralizer import CategorySerializer
 
 
 
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
+    product_categories = CategorySerializer(many=True)
     class Meta:
         model = ProductModel
         fields = [
