@@ -4,6 +4,7 @@ from rest_framework import status
 from market.models.product_model import ProductModel
 from api.serealaizers.product_serialayzer import ProductSerializer
 
+
 class ProductAPIView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = ProductModel.objects.all()

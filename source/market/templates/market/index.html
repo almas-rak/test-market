@@ -4,7 +4,19 @@
 
 {% for product in products %}
 
-
+<img src="{{ product.product_image.url }}" alt="" style="height: 300px; width: 300px;">
+<p>{{ product.product_name }}</p>
+<p>{{ product.product_description }}</p>
+<p>
+    {% for category in product.product_categories.all %}
+    {{ category.category_name }}
+    {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+<p>{{ product.product_qty }}</p>
+<p>{{ product.product_price }}</p>
+<p>{{ product.created_at }}</p>
+<p>{{ product.updated_at }}</p>
 
 {% endfor %}
 
